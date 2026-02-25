@@ -1,0 +1,7 @@
+{
+  "name": "運動平台前端",
+  "description": "A sports pickup game platform where users can find, join, and organize sports activities like basketball, badminton, and more.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

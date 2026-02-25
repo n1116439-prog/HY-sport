@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitApp 臨打團</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* 狀態標籤動畫 - 復刻 HTML 原始碼 */
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        @keyframes pulse-green {
+            0%, 100% { 
+                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+                transform: scale(1.02);
+            }
+        }
+        @keyframes pulse-orange {
+            0%, 100% { 
+                box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+                transform: scale(1.02);
+            }
+        }
+
+        .status-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        .status-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 3s infinite;
+        }
+        .status-badge.confirmed {
+            background: linear-gradient(135deg, #28a745, #20c997, #17a2b8);
+            animation: pulse-green 2s infinite;
+        }
+        .status-badge.pending {
+            background: linear-gradient(135deg, #ffc107, #fd7e14, #e83e8c);
+            animation: pulse-orange 2.5s infinite;
+        }
+
+        .animate-slide-up { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .btn-press:active { transform: scale(0.94); }
+        .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 20px); }
+        
+        .carousel {
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-router-dom": "https://esm.sh/react-router-dom@^7.12.0",
+        "react": "https://esm.sh/react@^19.2.3",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "@google/genai": "https://esm.sh/@google/genai@^1.37.0"
+      }
+    }
+    </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-white h-full overflow-hidden">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
